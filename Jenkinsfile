@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'WS'
-    }
+    agent { label 'WS' }
 
     parameters {
         choice(name: 'CHOICE', choices: ['dev', 'prod'], description: 'Select The Environment')
@@ -19,6 +17,7 @@ pipeline {
             steps {    
                     sh "terraform plan -var-file=env-${ENV}/${ENV}.tfvars"
             }
+        }
 
         stage('terraform apply') {
             steps {    
